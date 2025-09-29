@@ -63,8 +63,8 @@ npm run android
 ## Roadmap du projet 📋
 
 ### Phase 1 : Audio & Timer ⚡ En cours
-- [] Gestion du volume du gong
-- [] Système de playlist de sons
+- [ ] Gestion du volume du gong
+- [ ] Système de playlist de sons
 - [ ] Paramétrage de la fréquence du gong
 - [ ] Playlist de sons de gong personnalisables
 - [ ] Sélecteur de durée de méditation (wheel picker)
