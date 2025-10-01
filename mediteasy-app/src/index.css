@@ -297,6 +297,48 @@ button:focus {
   gap: var(--spacing-1);
 }
 
+/* */
+.petal {
+  position: fixed;
+  top: -10px;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(ellipse at center, var(--color-primary-1) 0%, var(--color-primary-2) 50%, var(--color-primary-1) 100%);
+  border-radius: 50% 0 50% 0;
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 9999;
+  animation: fall linear infinite, sway ease-in-out infinite;
+  box-shadow: 0 0 3px var(--color-muted);
+}
+
+.petal::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(ellipse at center, var(--color-primary-1) 0%, var(--color-primary-2) 50%, var(--color-primary-1) 100%);
+  border-radius: 0 50% 0 50%;
+  top: -5px;
+  left: 5px;
+  transform: rotate(45deg);
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+
+@keyframes sway {
+  0%, 100% {
+    margin-left: 0;
+  }
+  50% {
+    margin-left: 50px;
+  }
+}
+
 /* =====================================================
    VOLUME CONTROL - Contrôle du volume
    ===================================================== */
