@@ -111,10 +111,10 @@ export default function AmbientSoundSelector() {
   };
 
   return (
-    <div style={{ padding: '20px', maxWidth: '600px' }}>
+    <div className="selector-card" style={{ padding: '20px', maxWidth: '600px' }}>
       <h1>Sons Ambiants pour Méditation</h1>
       
-      <div style={{ marginBottom: '15px' }}>
+      <div className="selectors-container" style={{ marginBottom: '15px' }}>
         <label htmlFor="sound-select">Choisir un son ambiant : </label>
         <select
           id="sound-select"

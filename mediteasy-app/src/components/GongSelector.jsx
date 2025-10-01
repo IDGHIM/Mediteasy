@@ -54,10 +54,10 @@ export default function GongSelector() {
   };
   
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="selector-card" style={{ padding: '20px' }}>
       <h1>Sélecteur de Sons de Gong</h1>
       
-      <div style={{ marginBottom: '15px' }}>
+      <div className="selectors-container" style={{ marginBottom: '15px' }}>
         <label htmlFor="gong-select">Choisir un son de gong : </label>
         <select
           id="gong-select"
