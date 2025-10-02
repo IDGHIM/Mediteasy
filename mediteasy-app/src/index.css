@@ -170,6 +170,8 @@ body {
   padding: var(--spacing-4);
   box-shadow: var(--shadow-soft);
   transition: all 0.3s ease;
+  max-width: 600px; /* Largeur maximale identique pour tous */
+  width: 100%;
 }
 
 .selector-card:hover {
@@ -177,7 +179,8 @@ body {
   transform: translateY(-2px);
 }
 
-.selector-card h1 {
+.selector-card h1,
+.selector-card h2 {
   font-size: 1.25rem;
   font-weight: var(--font-heading-weight);
   color: var(--text-default);
@@ -423,6 +426,31 @@ input[type="range"]:focus {
 }
 
 /* =====================================================
+   GONG FREQUENCY SELECTOR - Sélecteur de fréquence
+   ===================================================== */
+
+.frequency-selector-wrapper {
+  margin-bottom: var(--spacing-3);
+}
+
+.frequency-info {
+  padding: var(--spacing-3);
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--color-outline);
+  margin-top: var(--spacing-3);
+}
+
+.frequency-info p {
+  color: var(--text-default);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin: 0;
+}
+
+/* =====================================================
    RESPONSIVE DESIGN
    ===================================================== */
 
@@ -451,6 +479,10 @@ input[type="range"]:focus {
   button {
     width: 100%;
     justify-content: center;
+  }
+  
+  .selector-card {
+    max-width: 100%;
   }
 }
 
