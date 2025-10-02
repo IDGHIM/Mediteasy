@@ -14,6 +14,7 @@ import {
 } from '@ionic/react';
 import { musicalNotes } from 'ionicons/icons';
 import AudioUploader from '../components/SimpleAudioUploader';
+import AmbientSelector from '../components/AmbientSelector';
 import './Tab1.css';
 
 interface AudioFile {
@@ -38,12 +39,16 @@ const Tab1: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Mediteasy</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+      <IonContent fullscreen style={{ padding: '16px' }}>
+        {/* Ambient Selector */}
+        <IonCard>
+          <IonCardHeader>
+            <IonCardTitle>🧘 Méditation</IonCardTitle>
+          </IonCardHeader>
+          <IonCardContent>
+              <AmbientSelector />
+          </IonCardContent>
+        </IonCard>
 
         {/* Audio sélectionné */}
         {selectedAudio && (
@@ -63,9 +68,15 @@ const Tab1: React.FC = () => {
           </IonCard>
         )}
 
-        {/* Composant d'upload */}
-        <AudioUploader onAudioSelect={handleAudioSelect} />
-        
+        {/* AudioUploader */}
+        <IonCard>
+          <IonCardHeader>
+            <IonCardTitle>🎵 Audio Uploader</IonCardTitle>
+          </IonCardHeader>
+          <IonCardContent>
+            <AudioUploader onAudioSelect={handleAudioSelect} />
+          </IonCardContent>
+        </IonCard>
       </IonContent>
     </IonPage>
   );

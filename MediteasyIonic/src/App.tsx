@@ -1,13 +1,5 @@
 import { Redirect, Route } from 'react-router-dom';
-import {
-  IonApp,
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-  setupIonicReact
-} from '@ionic/react';
+import { IonApp, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Tab1 from './pages/Tab1';
 
