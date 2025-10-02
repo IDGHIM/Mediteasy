@@ -4,9 +4,9 @@ import GongFrequencySelector from './GongFrequencySelector';
 export default function GongSelector({ 
   onGongSelect,
   onVolumeChange,
-  onFrequencyChange, // Nouveau prop
+  onFrequencyChange,
   initialVolume = 0.7,
-  frequency = 'none' // Nouveau prop
+  frequency = 'none'
 }) {
   const [selectedGong, setSelectedGong] = useState('tibetan-bowl');
   const [loadingState, setLoadingState] = useState('idle');
@@ -103,7 +103,6 @@ export default function GongSelector({
         </select>
       </div>
       
-      {/* Sélecteur de fréquence intégré */}
       <GongFrequencySelector 
         frequency={frequency}
         onFrequencyChange={onFrequencyChange}
