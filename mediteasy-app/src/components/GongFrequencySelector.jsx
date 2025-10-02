@@ -10,7 +10,7 @@ export default function GongFrequencySelector({ frequency, onFrequencyChange }) 
   ];
   
   return (
-    <div style={{ marginBottom: '15px' }}>
+    <div>
       <label htmlFor="gong-frequency">
         Fréquence des gongs :
       </label>
@@ -18,7 +18,6 @@ export default function GongFrequencySelector({ frequency, onFrequencyChange }) 
         id="gong-frequency"
         value={frequency}
         onChange={(e) => onFrequencyChange(e.target.value)}
-        style={{ marginLeft: '10px', padding: '5px' }}
       >
         {frequencyOptions.map((option) => (
           <option key={option.id} value={option.id}>
