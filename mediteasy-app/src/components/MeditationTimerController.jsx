@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 // Composant Wheel Picker pour la sélection de durée
-function DurationWheelPicker({ value, onChange, disabled, durations }) {
+function DurationWheelPicker({ value, onChange, disabled, durations = [5, 10, 15, 20, 30, 45, 60] }) {
   const wheelRef = useRef(null);
   const itemHeight = 60;
   const visibleItems = 5;
@@ -24,6 +24,15 @@ function DurationWheelPicker({ value, onChange, disabled, durations }) {
     
     if (durations[clampedIndex] !== value) {
       onChange(durations[clampedIndex]);
+    }
+  };
+
+  const handleClick = (duration, index) => {
+    if (!disabled) {
+      onChange(duration);
+      if (wheelRef.current) {
+        wheelRef.current.scrollTop = index * itemHeight;
+      }
     }
   };
 
@@ -80,11 +89,12 @@ function DurationWheelPicker({ value, onChange, disabled, durations }) {
         <div style={{ height: `${centerIndex * itemHeight}px` }}></div>
         
         {/* Items de durée */}
-        {durations.map((duration) => {
+        {durations.map((duration, index) => {
           const isSelected = duration === value;
           return (
             <div
               key={duration}
+              onClick={() => handleClick(duration, index)}
               style={{
                 height: '60px',
                 display: 'flex',
@@ -95,7 +105,18 @@ function DurationWheelPicker({ value, onChange, disabled, durations }) {
                 scrollSnapAlign: 'center',
                 color: isSelected ? '#8b5cf6' : '#9ca3af',
                 transform: isSelected ? 'scale(1.1)' : 'scale(0.9)',
-                transition: 'all 0.3s'
+                transition: 'all 0.3s',
+                cursor: disabled ? 'not-allowed' : 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                if (!disabled && !isSelected) {
+                  e.target.style.color = '#a78bfa';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!disabled && !isSelected) {
+                  e.target.style.color = '#9ca3af';
+                }
               }}
             >
               {duration} min
@@ -652,9 +673,15 @@ export default function MeditationTimerController() {
 
         {/* Durée sélectionnée */}
         {!isPlaying && !isFinished && (
-          <div>
-            <p style={{ fontSize: '0.875rem' }}>Durée sélectionnée</p>
-            <p>
+          <div style={{
+            marginTop: '24px',
+            textAlign: 'center',
+            padding: '12px',
+            backgroundColor: '#f3f4f6',
+            borderRadius: '8px'
+          }}>
+            <p style={{ fontSize: '0.875rem', color: '#6b7280', marginBottom: '4px' }}>Durée sélectionnée</p>
+            <p style={{ fontSize: '1.25rem', fontWeight: '600', color: '#1f2937' }}>
               {duration} minutes
             </p>
           </div>
