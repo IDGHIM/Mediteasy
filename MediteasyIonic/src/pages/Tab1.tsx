@@ -12,6 +12,8 @@ import {
   IonText,
   IonIcon
 } from '@ionic/react';
+
+
 import { musicalNotes } from 'ionicons/icons';
 import AudioUploader from '../components/SimpleAudioUploader';
 import './Tab1.css';
@@ -45,7 +47,6 @@ const Tab1: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        {/* Audio sélectionné */}
         {selectedAudio && (
           <IonCard color="light">
             <IonCardHeader>
@@ -62,8 +63,7 @@ const Tab1: React.FC = () => {
             </IonCardContent>
           </IonCard>
         )}
-
-        {/* Composant d'upload */}
+        
         <AudioUploader onAudioSelect={handleAudioSelect} />
         
       </IonContent>

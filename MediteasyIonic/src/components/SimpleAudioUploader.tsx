@@ -13,52 +13,38 @@ import {
 import { cloudUpload, play, musicalNotes } from 'ionicons/icons';
 
 interface AudioFile {
-  id: string;
-  name: string;
-  url: string;
+    id: string;
+    name: string;
+    url: string;
 }
-
-interface AudioUploaderProps {
-  onAudioSelect?: (file: AudioFile) => void;
+interface AudioUploaderProps{
+    onAudioSelect?: (file: AudioFile) => void;
 }
+const AudioUploader: React.FC<AudioUploaderProps> = ({ onAudioSelect}) => {
+    const [selectedFile, setSelectedFile] = useState <AudioFile | null>(null);
 
-const AudioUploader: React.FC<AudioUploaderProps> = ({ onAudioSelect }) => {
-  const [selectedFile, setSelectedFile] = useState<AudioFile | null>(null);
-
-  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    if (!file.type.startsWith('audio/')) {
-      alert('Veuillez sélectionner un fichier audio');
-      return;
-    }
-
-    // Créer une URL temporaire pour le fichier
-    const fileUrl = URL.createObjectURL(file);
+    const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
     
+    if(!file.type.startsWith('audio/')) {
+        alert("Selectionnez un fichier audio valide");
+        return;
+    }
+    const fileUrl = URL.createObjectURL(file);
+
     const audioFile: AudioFile = {
-      id: Date.now().toString(),
-      name: file.name,
-      url: fileUrl
+        id: Date.now().toString(),
+        name:file.name,
+        url:fileUrl
     };
 
-    setSelectedFile(audioFile);
-    
-    if (onAudioSelect) {
-      onAudioSelect(audioFile);
-    }
-  };
+    setSelectedFile(audioFile)
 
-  const playAudio = () => {
-    if (selectedFile) {
-      const audio = new Audio(selectedFile.url);
-      audio.play().catch(error => {
-        console.error('Erreur lecture:', error);
-        alert('Erreur lors de la lecture');
-      });
+    if(onAudioSelect){
+        onAudioSelect(audioFile);
     }
-  };
+}
 
   return (
     <IonCard>
@@ -69,27 +55,18 @@ const AudioUploader: React.FC<AudioUploaderProps> = ({ onAudioSelect }) => {
       </IonCardHeader>
       
       <IonCardContent>
-        {/* Bouton d'upload */}
-        <IonButton expand="block" color="primary" style={{ position: 'relative' }}>
+        
+        <IonButton expand="block">
           <IonIcon icon={cloudUpload} slot="start" />
           Sélectionner un fichier audio
           <input
             type="file"
             accept="audio/*"
             onChange={handleFileSelect}
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              opacity: 0,
-              cursor: 'pointer'
-            }}
           />
         </IonButton>
 
-        {/* Fichier sélectionné */}
+        
         {selectedFile && (
           <IonList>
             <IonItem>
@@ -100,7 +77,7 @@ const AudioUploader: React.FC<AudioUploaderProps> = ({ onAudioSelect }) => {
               </IonLabel>
               <IonButton 
                 fill="clear" 
-                onClick={playAudio}
+                //onClick={}
                 slot="end"
               >
                 <IonIcon icon={play} />
