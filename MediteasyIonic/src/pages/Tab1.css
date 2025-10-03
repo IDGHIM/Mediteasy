@@ -1,0 +1,1296 @@
+/* ==============================================
+   GONG SELECTOR - Styles basés sur les variables root
+   ============================================== */
+
+:root{
+  /* Couleurs principales */
+  --color-primary-1: #68E0DB; /* cyan pâle - début du dégradé */
+  --color-primary-2: #7BCFA0; /* vert douceur - fin du dégradé */
+  --color-accent:     #0B3B52; /* bleu foncé utilisé pour le logotype / CTAs */
+  --color-accent-2:   #074B61; /* bleu accent (hover/bordures) */
+
+  /* Neutres */
+  --color-bg:         #F6FCFD; /* fond général clair */
+  --color-surface:    #FFFFFF; /* surfaces (cards, modals) */
+  --color-muted:      #9FB6BE; /* textes secondaires, icônes discrètes */
+  --color-outline:    rgba(11,59,82,0.08);
+
+  /* Texte */
+  --text-default:     #07323F; /* couleur texte principale (contraste élevé) */
+  --text-on-primary:  #FFFFFF; /* texte sur éléments colorés */
+
+  /* Dégradé principal */
+  --grad-primary: linear-gradient(135deg,var(--color-primary-1),var(--color-primary-2));
+
+  /* Ombres / élévation */
+  --shadow-soft: 0 6px 18px rgba(11,59,82,0.08);
+  --shadow-hover: 0 10px 30px rgba(11,59,82,0.10);
+
+  /* Typographie */
+  --font-sans: "Inter", system-ui, -apple-system, "Helvetica Neue", Arial;
+  --font-heading-weight: 600;
+  --font-body-weight: 400;
+
+  /* Sizes / spacing */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-pill: 999px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 16px;
+  --spacing-4: 24px;
+
+  /* Icon / app tile */
+  --icon-size: 56px;
+  --app-icon-radius: 18px;
+
+  /* Accessibility */
+  --focus-ring: 3px solid rgba(11,59,82,0.18);
+}
+
+/* Dark theme variant */
+:root[data-theme="dark"]{
+  --color-bg:         #071821;
+  --color-surface:    #072830;
+  --color-muted:      #7DA6AD;
+  --text-default:     #E8F7F8;
+  --color-outline:    rgba(120,220,210,0.06);
+
+  /* Make gradients slightly richer on dark bg */
+  --color-primary-1: #4FD9D1;
+  --color-primary-2: #4AB285;
+  --grad-primary: linear-gradient(135deg,var(--color-primary-1),var(--color-primary-2));
+  --shadow-soft: none;
+}
+
+/* --- Conteneur principal --- */
+.gong-selector-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-4);
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow 0.3s ease;
+}
+
+.gong-selector-card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* --- Titre principal --- */
+.gong-selector-title {
+  font-family: var(--font-sans);
+  font-weight: var(--font-heading-weight);
+  font-size: 1.75rem;
+  color: var(--text-default);
+  margin: 0 0 var(--spacing-4) 0;
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- Conteneur du select --- */
+.gong-select-container {
+  margin-bottom: var(--spacing-4);
+}
+
+.gong-select-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: var(--font-heading-weight);
+  font-size: 0.875rem;
+  color: var(--text-default);
+  margin-bottom: var(--spacing-2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.gong-select {
+  width: 100%;
+  padding: var(--spacing-3);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--text-default);
+  background: var(--color-bg);
+  border: 2px solid var(--color-outline);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%230B3B52' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-3) center;
+  padding-right: calc(var(--spacing-3) * 2 + 12px);
+}
+
+.gong-select:hover {
+  border-color: var(--color-accent-2);
+}
+
+.gong-select:focus {
+  outline: var(--focus-ring);
+  border-color: var(--color-accent);
+}
+
+/* --- Conteneur du volume --- */
+.gong-volume-container {
+  margin-bottom: var(--spacing-4);
+}
+
+.gong-volume-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-weight: var(--font-heading-weight);
+  font-size: 0.875rem;
+  color: var(--text-default);
+  margin-bottom: var(--spacing-2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.gong-volume-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.gong-volume-slider {
+  flex: 1;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-outline);
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gong-volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--grad-primary);
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease;
+}
+
+.gong-volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.gong-volume-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background: var(--grad-primary);
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease;
+}
+
+.gong-volume-slider::-moz-range-thumb:hover {
+  transform: scale(1.15);
+}
+
+.gong-volume-slider:focus {
+  outline: var(--focus-ring);
+}
+
+.gong-volume-value {
+  font-family: var(--font-sans);
+  font-weight: var(--font-heading-weight);
+  font-size: 1rem;
+  color: var(--color-accent);
+  min-width: 48px;
+  text-align: right;
+}
+
+/* --- Statut de chargement --- */
+.gong-loading-status {
+  margin-bottom: var(--spacing-3);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: var(--font-body-weight);
+}
+
+.gong-status-loading {
+  background: rgba(104, 224, 219, 0.1);
+  color: var(--color-accent);
+  border-left: 3px solid var(--color-primary-1);
+}
+
+.gong-status-loaded {
+  background: rgba(123, 207, 160, 0.1);
+  color: var(--color-accent);
+  border-left: 3px solid var(--color-primary-2);
+}
+
+.gong-status-error {
+  background: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+  border-left: 3px solid #dc3545;
+}
+
+/* --- Bouton de prévisualisation --- */
+.gong-preview-button {
+  width: 100%;
+  padding: var(--spacing-3);
+  font-family: var(--font-sans);
+  font-weight: var(--font-heading-weight);
+  font-size: 1rem;
+  color: var(--text-on-primary);
+  background: var(--grad-primary);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-soft);
+}
+
+.gong-preview-button:hover:not(.gong-preview-button--disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.gong-preview-button:active:not(.gong-preview-button--disabled) {
+  transform: translateY(0);
+}
+
+.gong-preview-button:focus {
+  outline: var(--focus-ring);
+}
+
+.gong-preview-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--color-muted);
+}
+
+
+/* ==============================================
+   AMBIENT SELECTOR - Styles avancés
+   ============================================== */
+
+/* --- Wrapper principal --- */
+.ambient-selector {
+  font-family: var(--font-sans);
+}
+
+/* --- Card conteneur --- */
+.ambient-selector__container {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-4);
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow 0.3s ease;
+}
+
+.ambient-selector__container:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* --- Sections --- */
+.ambient-selector__section {
+  margin-bottom: var(--spacing-4);
+}
+
+.ambient-selector__section:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Titres --- */
+.ambient-selector__title {
+  font-weight: var(--font-heading-weight);
+  font-size: 1.75rem;
+  color: var(--text-default);
+  margin: 0 0 var(--spacing-4) 0;
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ambient-selector__section-title {
+  font-weight: var(--font-heading-weight);
+  font-size: 0.875rem;
+  color: var(--text-default);
+  margin-bottom: var(--spacing-2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* --- Select dropdown --- */
+.ambient-selector__select {
+  width: 100%;
+  padding: var(--spacing-3);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--text-default);
+  background: var(--color-bg);
+  border: 2px solid var(--color-outline);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%230B3B52' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-3) center;
+  padding-right: calc(var(--spacing-3) * 2 + 12px);
+}
+
+.ambient-selector__select:hover {
+  border-color: var(--color-accent-2);
+}
+
+.ambient-selector__select:focus {
+  outline: var(--focus-ring);
+  border-color: var(--color-accent);
+}
+
+/* --- Volume --- */
+.ambient-selector__volume {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-2);
+}
+
+.ambient-selector__volume-label {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  min-width: 60px;
+}
+
+.ambient-selector__volume-slider {
+  flex: 1;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-outline);
+  appearance: none;
+  cursor: pointer;
+}
+
+.ambient-selector__volume-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--grad-primary);
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease;
+}
+
+.ambient-selector__volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.ambient-selector__volume-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background: var(--grad-primary);
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease;
+}
+
+.ambient-selector__volume-slider::-moz-range-thumb:hover {
+  transform: scale(1.15);
+}
+
+.ambient-selector__volume-slider:focus {
+  outline: var(--focus-ring);
+}
+
+/* --- Boutons de base --- */
+.ambient-selector__button {
+  padding: var(--spacing-3) var(--spacing-4);
+  font-family: var(--font-sans);
+  font-weight: var(--font-heading-weight);
+  font-size: 1rem;
+  color: var(--text-on-primary);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-soft);
+  margin-right: var(--spacing-2);
+}
+
+.ambient-selector__button:last-child {
+  margin-right: 0;
+}
+
+.ambient-selector__button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.ambient-selector__button:active {
+  transform: translateY(0);
+}
+
+.ambient-selector__button:focus {
+  outline: var(--focus-ring);
+}
+
+/* --- Variantes de boutons --- */
+.ambient-selector__button--start {
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
+}
+
+.ambient-selector__button--restart {
+  background: linear-gradient(135deg, var(--color-primary-2), #3ea876);
+}
+
+.ambient-selector__button--pause {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.ambient-selector__button--stop {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+/* --- Bouton durée personnalisée --- */
+.ambient-selector__custom-button {
+  padding: var(--spacing-2) var(--spacing-3);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--color-accent);
+  background: transparent;
+  border: 2px solid var(--color-outline);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: var(--spacing-2);
+}
+
+.ambient-selector__custom-button:hover {
+  border-color: var(--color-accent-2);
+  background: var(--color-bg);
+}
+
+.ambient-selector__custom-button:focus {
+  outline: var(--focus-ring);
+}
+
+/* --- Input personnalisé --- */
+.ambient-selector__custom-input {
+  width: 80px;
+  padding: var(--spacing-2);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--text-default);
+  background: var(--color-bg);
+  border: 2px solid var(--color-outline);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.ambient-selector__custom-input:hover {
+  border-color: var(--color-accent-2);
+}
+
+.ambient-selector__custom-input:focus {
+  outline: var(--focus-ring);
+  border-color: var(--color-accent);
+}
+
+/* --- Boutons de confirmation --- */
+.ambient-selector__custom-confirm,
+.ambient-selector__custom-cancel {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  font-size: 1.25rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: var(--spacing-2);
+}
+
+.ambient-selector__custom-confirm {
+  background: var(--color-primary-2);
+  color: var(--text-on-primary);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ambient-selector__custom-confirm:hover {
+  background: #3ea876;
+  transform: scale(1.05);
+}
+
+.ambient-selector__custom-cancel {
+  background: transparent;
+  color: var(--color-muted);
+  border: 2px solid var(--color-outline);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ambient-selector__custom-cancel:hover {
+  border-color: #e74c3c;
+  color: #e74c3c;
+  transform: scale(1.05);
+}
+
+.ambient-selector__custom-confirm:focus,
+.ambient-selector__custom-cancel:focus {
+  outline: var(--focus-ring);
+}
+
+/* ==============================================
+   ÉTATS INTERACTIFS AVANCÉS
+   ============================================== */
+
+/* --- États disabled pour tous les boutons --- */
+.gong-preview-button:disabled,
+.ambient-selector__button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none;
+}
+
+/* --- États loading --- */
+.gong-preview-button--loading,
+.ambient-selector__button--loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.gong-preview-button--loading::after,
+.ambient-selector__button--loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 3px solid var(--text-on-primary);
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+  to { transform: rotate(360deg); }
+}
+
+/* --- États actifs pour boutons de contrôle --- */
+.ambient-selector__button--active {
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(0.98);
+}
+
+
+/* ==============================================
+   GROUPES DE BOUTONS
+   ============================================== */
+
+.ambient-selector__button-group {
+  display: flex;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-3);
+  flex-wrap: wrap;
+}
+
+.ambient-selector__button-group .ambient-selector__button {
+  margin-right: 0;
+  flex: 1;
+  min-width: 120px;
+}
+
+
+/* ==============================================
+   INPUTS ET FORMULAIRES
+   ============================================== */
+
+/* --- Input group (pour durée personnalisée) --- */
+.ambient-selector__input-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-2);
+}
+
+/* --- Messages d'erreur --- */
+.ambient-selector__error,
+.gong-error-message {
+  padding: var(--spacing-2) var(--spacing-3);
+  background: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+  border-left: 3px solid #dc3545;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  margin-top: var(--spacing-2);
+  animation: slideIn 0.3s ease;
+}
+
+/* --- Messages de succès --- */
+.ambient-selector__success,
+.gong-success-message {
+  padding: var(--spacing-2) var(--spacing-3);
+  background: rgba(123, 207, 160, 0.1);
+  color: var(--color-accent);
+  border-left: 3px solid var(--color-primary-2);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  margin-top: var(--spacing-2);
+  animation: slideIn 0.3s ease;
+}
+
+/* --- Messages d'info --- */
+.ambient-selector__info,
+.gong-info-message {
+  padding: var(--spacing-2) var(--spacing-3);
+  background: rgba(104, 224, 219, 0.1);
+  color: var(--color-accent);
+  border-left: 3px solid var(--color-primary-1);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  margin-top: var(--spacing-2);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ==============================================
+   TIMER ET PROGRESSION
+   ============================================== */
+
+/* --- Affichage du timer --- */
+.ambient-selector__timer {
+  font-family: var(--font-sans);
+  font-weight: var(--font-heading-weight);
+  font-size: 2rem;
+  color: var(--text-default);
+  text-align: center;
+  padding: var(--spacing-4);
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  margin: var(--spacing-4) 0;
+  letter-spacing: 2px;
+}
+
+.gong-timer {
+  font-family: var(--font-sans);
+  font-weight: var(--font-heading-weight);
+  font-size: 2rem;
+  color: var(--text-default);
+  text-align: center;
+  padding: var(--spacing-4);
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  margin: var(--spacing-4) 0;
+  letter-spacing: 2px;
+}
+
+/* --- Barre de progression --- */
+.ambient-selector__progress,
+.gong-progress {
+  width: 100%;
+  height: 8px;
+  background: var(--color-outline);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin: var(--spacing-3) 0;
+}
+
+.ambient-selector__progress-bar,
+.gong-progress-bar {
+  height: 100%;
+  background: var(--grad-primary);
+  border-radius: var(--radius-pill);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 12px rgba(104, 224, 219, 0.4);
+}
+
+/* --- Indicateur de progression circulaire --- */
+.ambient-selector__circular-progress {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: var(--spacing-4) auto;
+}
+
+.ambient-selector__circular-progress svg {
+  transform: rotate(-90deg);
+}
+
+.ambient-selector__circular-progress circle {
+  fill: none;
+  stroke-width: 8;
+}
+
+.ambient-selector__circular-progress .progress-bg {
+  stroke: var(--color-outline);
+}
+
+.ambient-selector__circular-progress .progress-fill {
+  stroke: url(#progressGradient);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.ambient-selector__circular-progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  font-weight: var(--font-heading-weight);
+  color: var(--text-default);
+}
+
+
+/* ==============================================
+   BADGES ET CHIPS
+   ============================================== */
+
+.ambient-selector__badge,
+.gong-badge {
+  display: inline-block;
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: 0.75rem;
+  font-weight: var(--font-heading-weight);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: var(--radius-pill);
+  background: var(--grad-primary);
+  color: var(--text-on-primary);
+}
+
+.ambient-selector__badge--outline,
+.gong-badge--outline {
+  background: transparent;
+  color: var(--color-accent);
+  border: 2px solid var(--color-outline);
+}
+
+/* --- Chips (pour sélection multiple) --- */
+.ambient-selector__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: 0.875rem;
+  background: var(--color-bg);
+  border: 2px solid var(--color-outline);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: var(--spacing-1);
+}
+
+.ambient-selector__chip:hover {
+  border-color: var(--color-accent-2);
+  background: var(--color-surface);
+}
+
+.ambient-selector__chip--selected {
+  background: var(--grad-primary);
+  color: var(--text-on-primary);
+  border-color: transparent;
+}
+
+.ambient-selector__chip-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.ambient-selector__chip-close:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+
+/* ==============================================
+   TOOLTIPS
+   ============================================== */
+
+.ambient-selector__tooltip,
+.gong-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.ambient-selector__tooltip-content,
+.gong-tooltip-content {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--spacing-2) var(--spacing-3);
+  background: var(--color-accent);
+  color: var(--text-on-primary);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  border-radius: var(--radius-sm);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.ambient-selector__tooltip-content::after,
+.gong-tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--color-accent);
+}
+
+.ambient-selector__tooltip:hover .ambient-selector__tooltip-content,
+.gong-tooltip:hover .gong-tooltip-content {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* ==============================================
+   MODAL / OVERLAY
+   ============================================== */
+
+.ambient-selector__overlay,
+.gong-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(7, 50, 63, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.ambient-selector__overlay--visible,
+.gong-overlay--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ambient-selector__modal,
+.gong-modal {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-4);
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(11, 59, 82, 0.3);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.ambient-selector__overlay--visible .ambient-selector__modal,
+.gong-overlay--visible .gong-modal {
+  transform: scale(1);
+}
+
+.ambient-selector__modal-header,
+.gong-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-4);
+  padding-bottom: var(--spacing-3);
+  border-bottom: 2px solid var(--color-outline);
+}
+
+.ambient-selector__modal-title,
+.gong-modal-title {
+  font-size: 1.5rem;
+  font-weight: var(--font-heading-weight);
+  color: var(--text-default);
+  margin: 0;
+}
+
+.ambient-selector__modal-close,
+.gong-modal-close {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--color-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.ambient-selector__modal-close:hover,
+.gong-modal-close:hover {
+  background: var(--color-bg);
+  color: var(--text-default);
+}
+
+.ambient-selector__modal-body,
+.gong-modal-body {
+  margin-bottom: var(--spacing-4);
+}
+
+.ambient-selector__modal-footer,
+.gong-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-2);
+  padding-top: var(--spacing-3);
+  border-top: 2px solid var(--color-outline);
+}
+
+
+/* ==============================================
+   ICÔNES
+   ============================================== */
+
+.ambient-selector__icon,
+.gong-icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--app-icon-radius);
+  background: var(--grad-primary);
+  color: var(--text-on-primary);
+  font-size: 1.5rem;
+}
+
+.ambient-selector__icon--small,
+.gong-icon--small {
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
+  border-radius: var(--radius-sm);
+}
+
+.ambient-selector__icon--large,
+.gong-icon--large {
+  width: 80px;
+  height: 80px;
+  font-size: 2rem;
+  border-radius: var(--radius-md);
+}
+
+
+/* ==============================================
+   TOGGLE SWITCH
+   ============================================== */
+
+.ambient-selector__toggle,
+.gong-toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.ambient-selector__toggle input,
+.gong-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.ambient-selector__toggle-slider,
+.gong-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-outline);
+  border-radius: var(--radius-pill);
+  transition: 0.3s;
+}
+
+.ambient-selector__toggle-slider::before,
+.gong-toggle-slider::before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background: var(--color-surface);
+  border-radius: 50%;
+  transition: 0.3s;
+  box-shadow: var(--shadow-soft);
+}
+
+.ambient-selector__toggle input:checked + .ambient-selector__toggle-slider,
+.gong-toggle input:checked + .gong-toggle-slider {
+  background: var(--grad-primary);
+}
+
+.ambient-selector__toggle input:checked + .ambient-selector__toggle-slider::before,
+.gong-toggle input:checked + .gong-toggle-slider::before {
+  transform: translateX(24px);
+}
+
+.ambient-selector__toggle input:focus + .ambient-selector__toggle-slider,
+.gong-toggle input:focus + .gong-toggle-slider {
+  outline: var(--focus-ring);
+}
+
+
+/* ==============================================
+   ANIMATIONS D'ENTRÉE
+   ============================================== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.5s ease;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+
+/* ==============================================
+   UTILITAIRES
+   ============================================== */
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-gradient {
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--spacing-1); }
+.mb-2 { margin-bottom: var(--spacing-2); }
+.mb-3 { margin-bottom: var(--spacing-3); }
+.mb-4 { margin-bottom: var(--spacing-4); }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--spacing-1); }
+.mt-2 { margin-top: var(--spacing-2); }
+.mt-3 { margin-top: var(--spacing-3); }
+.mt-4 { margin-top: var(--spacing-4); }
+
+.hidden {
+  display: none !important;
+}
+
+.visible {
+  display: block;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.gap-1 { gap: var(--spacing-1); }
+.gap-2 { gap: var(--spacing-2); }
+.gap-3 { gap: var(--spacing-3); }
+.gap-4 { gap: var(--spacing-4); }
+
+
+/* ==============================================
+   RESPONSIVE - TABLETTES
+   ============================================== */
+
+@media (max-width: 1024px) {
+  .ambient-selector__button-group .ambient-selector__button {
+    min-width: 100px;
+    font-size: 0.875rem;
+  }
+  
+  .ambient-selector__timer,
+  .gong-timer {
+    font-size: 1.75rem;
+  }
+}
+
+
+/* ==============================================
+   RESPONSIVE - MOBILE
+   ============================================== */
+
+@media (max-width: 480px) {
+  .ambient-selector__button-group {
+    flex-direction: column;
+  }
+  
+  .ambient-selector__button-group .ambient-selector__button {
+    width: 100%;
+    min-width: unset;
+  }
+  
+  .ambient-selector__timer,
+  .gong-timer {
+    font-size: 1.5rem;
+    padding: var(--spacing-3);
+  }
+  
+  .ambient-selector__modal,
+  .gong-modal {
+    width: 95%;
+    padding: var(--spacing-3);
+  }
+  
+  .ambient-selector__volume {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .ambient-selector__volume-label {
+    min-width: unset;
+    margin-bottom: var(--spacing-1);
+  }
+  
+  .gong-volume-controls {
+    flex-direction: column;
+  }
+  
+  .gong-volume-value {
+    text-align: left;
+    margin-top: var(--spacing-1);
+  }
+}
+
+
+/* ==============================================
+   PRINT
+   ============================================== */
+
+@media print {
+  .ambient-selector__button,
+  .gong-preview-button,
+  .ambient-selector__custom-button,
+  .ambient-selector__modal-close,
+  .gong-modal-close {
+    display: none;
+  }
+  
+  .ambient-selector__container,
+  .gong-selector-card {
+    box-shadow: none;
+    border: 1px solid var(--color-outline);
+  }
+}
