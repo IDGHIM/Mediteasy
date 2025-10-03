@@ -10,14 +10,14 @@ export default function GongFrequencySelector({ frequency, onFrequencyChange }) 
   ];
   
   return (
-    <div>
+    <div className="frequency-selector-wrapper">
       <label htmlFor="gong-frequency">
         Fréquence des gongs :
       </label>
       <select
         id="gong-frequency"
         value={frequency}
-        onChange={(e) => onFrequencyChange(e.target.value)}
+        onChange={(e) => onFrequencyChange && onFrequencyChange(e.target.value)}
       >
         {frequencyOptions.map((option) => (
           <option key={option.id} value={option.id}>

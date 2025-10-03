@@ -64,14 +64,6 @@ export default function GongSelector({
     }
   }, [gongVolume]);
   
-  const handleSelectGong = (e) => {
-    setSelectedGong(e.target.value);
-  };
-  
-  const handleVolumeChange = (e) => {
-    setGongVolume(parseFloat(e.target.value));
-  };
-  
   const playPreview = async () => {
     if (!audioRef.current || loadingState !== 'loaded') return;
     
@@ -87,13 +79,12 @@ export default function GongSelector({
     <div className="selector-card">
       <h1>Sélecteur de Sons de Gong</h1>
       
-      <div style={{ marginBottom: '15px' }}>
-        <label htmlFor="gong-select">Choisir un son de gong : </label>
+      <div className="gong-selector-wrapper">
+        <label htmlFor="gong-select">Choisir un son de gong :</label>
         <select
           id="gong-select"
           value={selectedGong}
-          onChange={handleSelectGong}
-          style={{ marginLeft: '10px', padding: '5px' }}
+          onChange={(e) => setSelectedGong(e.target.value)}
         >
           {gongOptions.map((option) => (
             <option key={option.id} value={option.id}>
@@ -108,11 +99,8 @@ export default function GongSelector({
         onFrequencyChange={onFrequencyChange}
       />
       
-      <div style={{ marginBottom: '15px' }}>
-        <label 
-          htmlFor="gong-volume" 
-          style={{ display: 'block', marginBottom: '5px' }}
-        >
+      <div className="volume-control">
+        <label htmlFor="gong-volume">
           Volume des gongs :
         </label>
         <div>
@@ -123,28 +111,23 @@ export default function GongSelector({
             max="1"
             step="0.01"
             value={gongVolume}
-            onChange={handleVolumeChange}
-            style={{ verticalAlign: 'middle', width: '200px' }}
+            onChange={(e) => setGongVolume(parseFloat(e.target.value))}
           />
-          <span style={{ marginLeft: '10px', fontWeight: 'bold' }}>
+          <span className="volume-percentage">
             {Math.round(gongVolume * 100)}%
           </span>
         </div>
       </div>
       
-      <div style={{ marginBottom: '15px' }}>
+      <div className="status-indicator">
         {loadingState === 'loading' && '⏳ Chargement...'}
-        {loadingState === 'loaded' && <span style={{ color: 'green' }}>✓ Fichier chargé</span>}
-        {loadingState === 'error' && <span style={{ color: 'red' }}>❌ Erreur: {selectedOption.file} introuvable</span>}
+        {loadingState === 'loaded' && <span className="status-loaded">✓ Fichier chargé</span>}
+        {loadingState === 'error' && <span className="status-error">❌ Erreur: {selectedOption.file} introuvable</span>}
       </div>
       
       <button 
         onClick={playPreview}
         disabled={loadingState !== 'loaded'}
-        style={{ 
-          padding: '10px 20px',
-          opacity: loadingState === 'loaded' ? 1 : 0.5 
-        }}
       >
         🔊 Écouter un aperçu
       </button>
