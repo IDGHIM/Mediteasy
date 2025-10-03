@@ -12,7 +12,17 @@ interface DurationOption {
   label: string;
 }
 
-const soundOptions: SoundOption[] = [
+interface AudioFile {
+  id: string;
+  name: string;
+  url: string;
+}
+
+interface AmbientSelectorProps {
+  uploadedFiles?: AudioFile[];
+}
+
+const baseSoundOptions: SoundOption[] = [
   { value: 'silence', label: '🔇 Silence' },
   { value: 'rain', label: '🌧️ Pluie', file: '/assets/ambient/rain.mp3' },
 ];
@@ -24,7 +34,7 @@ const durations: DurationOption[] = [
   { value: 20, label: '20 min' },
 ];
 
-const AmbientSelector: React.FC = () => {
+const AmbientSelector: React.FC<AmbientSelectorProps> = ({ uploadedFiles = [] }) => {
   const [selectedSound, setSelectedSound] = useState<string>('silence');
   const [duration, setDuration] = useState<number>(5);
   const [customMinutes, setCustomMinutes] = useState<string>('');
@@ -34,6 +44,16 @@ const AmbientSelector: React.FC = () => {
   const [volume, setVolume] = useState(0.5);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
+
+ 
+  const soundOptions: SoundOption[] = [
+    ...baseSoundOptions,
+    ...uploadedFiles.map(file => ({
+      value: `uploaded_${file.id}`,
+      label: `🎵 ${file.name}`,
+      file: file.url
+    }))
+  ];
 
   const selectedSoundOption = soundOptions.find((s) => s.value === selectedSound);
 
@@ -101,7 +121,7 @@ const AmbientSelector: React.FC = () => {
             }}
           />
         )}
-
+        
         {!isPlaying && !isFinished && (
           <div className="ambient-selector__section">
             <h2 className="ambient-selector__section-title">
@@ -112,6 +132,8 @@ const AmbientSelector: React.FC = () => {
               onChange={(e) => setSelectedSound(e.currentTarget.value)}
               className="ambient-selector__select"
             >
+              
+              
               {soundOptions.map((s) => (
                 <option key={s.value} value={s.value}>
                   {s.label}
