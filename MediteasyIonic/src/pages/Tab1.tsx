@@ -3,18 +3,19 @@ import {
   IonContent, 
   IonHeader, 
   IonPage, 
-  IonTitle, 
   IonToolbar,
   IonCard,
   IonCardContent,
   IonCardHeader,
   IonCardTitle,
   IonText,
+  IonButtons,
   IonIcon
 } from '@ionic/react';
 import { musicalNotes } from 'ionicons/icons';
 import AudioUploader from '../components/SimpleAudioUploader';
 import AmbientSelector from '../components/AmbientSelector';
+import GongSelector from '../components/GongSelector';
 import './Tab1.css';
 
 interface AudioFile {
@@ -34,8 +35,14 @@ const Tab1: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar color="primary">
-          <IonTitle>🧘 Mediteasy</IonTitle>
+        <IonToolbar style={{ '--background': 'transparent', '--border': 'transparent' } as React.CSSProperties}>
+          <IonButtons slot="start">
+          <img 
+          src="/assets/logo/logo_app.png" 
+          alt="Mediteasy Logo" 
+          style={{ height: '50px', marginLeft: '10px' }}
+          />
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       
@@ -62,11 +69,19 @@ const Tab1: React.FC = () => {
             <IonCardContent>
               <IonText>
                 <h3>{selectedAudio.name}</h3>
-                <p>Prêt pour la méditation !</p>
               </IonText>
             </IonCardContent>
           </IonCard>
         )}
+        {/* Gong Selector */}
+        <IonCard>
+          <IonCardHeader>
+            <IonCardTitle>🔔 Sélecteur de Gong</IonCardTitle>
+          </IonCardHeader>
+          <IonCardContent>
+            <GongSelector />
+          </IonCardContent>
+        </IonCard>
 
         {/* AudioUploader */}
         <IonCard>
@@ -79,6 +94,7 @@ const Tab1: React.FC = () => {
         </IonCard>
       </IonContent>
     </IonPage>
+
   );
 };
 

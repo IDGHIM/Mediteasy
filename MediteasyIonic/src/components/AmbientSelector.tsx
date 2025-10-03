@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import '../pages/Tab1.css';
 
 interface SoundOption {
   value: string;
@@ -75,7 +76,6 @@ const AmbientSelector: React.FC = () => {
     }
   };
 
-  // Update audio volume dynamically
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
@@ -83,67 +83,34 @@ const AmbientSelector: React.FC = () => {
   }, [volume]);
 
   return (
-    <div>
-      <div
-        style={{
-          backgroundColor: 'white',
-          borderRadius: '24px',
-          boxShadow:
-            '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-          padding: '32px',
-          maxWidth: '448px',
-          width: '100%',
-        }}
-      >
-        <h1
-          style={{
-            fontSize: '1.875rem',
-            fontWeight: 'bold',
-            textAlign: 'center',
-            color: '#1f2937',
-            marginBottom: '32px',
-          }}
-        >
+    <div className="ambient-selector">
+      <div className="ambient-selector__container">
+        <h1 className="ambient-selector__title">
           🧘 Méditation Timer
         </h1>
 
-        {/* Élément audio caché */}
         {selectedSound !== 'silence' && selectedSoundOption?.file && (
           <audio
             ref={audioRef}
             loop
             preload="auto"
             src={selectedSoundOption.file}
-            style={{ display: 'none' }}
+            className="ambient-selector__audio"
             onError={(e) => {
               console.error('Erreur de chargement audio:', e);
             }}
           />
         )}
 
-        {/* Sélection du son ambiant */}
         {!isPlaying && !isFinished && (
-          <div style={{ marginBottom: '32px' }}>
-            <h2
-              style={{
-                textAlign: 'center',
-                color: '#4b5563',
-                marginBottom: '16px',
-                fontWeight: '500',
-              }}
-            >
+          <div className="ambient-selector__section">
+            <h2 className="ambient-selector__section-title">
               Son ambiant
             </h2>
             <select
               value={selectedSound}
               onChange={(e) => setSelectedSound(e.currentTarget.value)}
-              style={{
-                width: '100%',
-                padding: '10px',
-                borderRadius: '8px',
-                border: '1px solid #d1d5db',
-                fontSize: '1rem',
-              }}
+              className="ambient-selector__select"
             >
               {soundOptions.map((s) => (
                 <option key={s.value} value={s.value}>
@@ -152,17 +119,9 @@ const AmbientSelector: React.FC = () => {
               ))}
             </select>
 
-            {/* Contrôle du volume */}
             {selectedSound !== 'silence' && (
-              <div style={{ marginTop: '20px', textAlign: 'center' }}>
-                <label
-                  style={{
-                    display: 'block',
-                    fontSize: '0.875rem',
-                    color: '#6b7280',
-                    marginBottom: '8px',
-                  }}
-                >
+              <div className="ambient-selector__volume">
+                <label className="ambient-selector__volume-label">
                   Volume: {Math.round(volume * 100)}%
                 </label>
                 <input
@@ -172,46 +131,22 @@ const AmbientSelector: React.FC = () => {
                   step="0.01"
                   value={volume}
                   onChange={(e) => setVolume(parseFloat(e.currentTarget.value))}
-                  style={{
-                    width: '80%',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.2s',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#d1d5db';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = '#e5e7eb';
-                  }}
+                  className="ambient-selector__volume-slider"
                 />
               </div>
             )}
           </div>
         )}
 
-        {/* Sélection de la durée */}
         {!isPlaying && !isFinished && (
-          <div style={{ marginBottom: '32px' }}>
-            <h2
-              style={{
-                textAlign: 'center',
-                color: '#4b5563',
-                marginBottom: '16px',
-                fontWeight: '500',
-              }}
-            >
+          <div className="ambient-selector__section">
+            <h2 className="ambient-selector__section-title">
               Durée de méditation
             </h2>
             <select
               value={duration}
               onChange={(e) => handleDurationChange(parseInt(e.currentTarget.value))}
-              style={{
-                width: '100%',
-                padding: '10px',
-                borderRadius: '8px',
-                border: '1px solid #d1d5db',
-                fontSize: '1rem',
-              }}
+              className="ambient-selector__select"
             >
               {durations.map((d) => (
                 <option key={d.value} value={d.value}>
@@ -221,47 +156,17 @@ const AmbientSelector: React.FC = () => {
             </select>
 
             {!showCustomInput ? (
-              <div style={{ textAlign: 'center', marginTop: '16px' }}>
+              <div className="ambient-selector__custom-button-wrapper">
                 <button
                   onClick={() => setShowCustomInput(true)}
-                  style={{
-                    padding: '8px 16px',
-                    borderRadius: '8px',
-                    fontSize: '0.875rem',
-                    fontWeight: '500',
-                    backgroundColor: '#e0e7ff',
-                    color: '#4c51bf',
-                    border: 'none',
-                    cursor: 'pointer',
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor = '#c7d2fe')
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.backgroundColor = '#e0e7ff')
-                  }
+                  className="ambient-selector__custom-button"
                 >
                   ➕ Durée personnalisée
                 </button>
               </div>
             ) : (
-              <div
-                style={{
-                  marginTop: '16px',
-                  padding: '16px',
-                  backgroundColor: '#f9fafb',
-                  borderRadius: '8px',
-                  border: '1px solid #e5e7eb',
-                }}
-              >
-                <div
-                  style={{
-                    display: 'flex',
-                    gap: '8px',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
+              <div className="ambient-selector__custom-input-wrapper">
+                <div className="ambient-selector__custom-input-group">
                   <input
                     type="number"
                     value={customMinutes}
@@ -269,29 +174,14 @@ const AmbientSelector: React.FC = () => {
                     placeholder="1-180"
                     min="1"
                     max="180"
-                    style={{
-                      width: '120px',
-                      padding: '8px 12px',
-                      borderRadius: '6px',
-                      border: '1px solid #d1d5db',
-                      fontSize: '0.875rem',
-                    }}
+                    className="ambient-selector__custom-input"
                     onKeyPress={(e) => {
                       if (e.key === 'Enter') handleAddCustomDuration();
                     }}
                   />
                   <button
                     onClick={handleAddCustomDuration}
-                    style={{
-                      padding: '8px 16px',
-                      borderRadius: '6px',
-                      fontSize: '0.875rem',
-                      fontWeight: '500',
-                      backgroundColor: '#8b5cf6',
-                      color: 'white',
-                      border: 'none',
-                      cursor: 'pointer',
-                    }}
+                    className="ambient-selector__custom-confirm"
                   >
                     ✓
                   </button>
@@ -300,16 +190,7 @@ const AmbientSelector: React.FC = () => {
                       setShowCustomInput(false);
                       setCustomMinutes('');
                     }}
-                    style={{
-                      padding: '8px 16px',
-                      borderRadius: '6px',
-                      fontSize: '0.875rem',
-                      fontWeight: '500',
-                      backgroundColor: '#e5e7eb',
-                      color: '#374151',
-                      border: 'none',
-                      cursor: 'pointer',
-                    }}
+                    className="ambient-selector__custom-cancel"
                   >
                     ✕
                   </button>
@@ -319,93 +200,30 @@ const AmbientSelector: React.FC = () => {
           </div>
         )}
 
-        {/* Boutons de contrôle */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div className="ambient-selector__controls">
           {(!isPlaying || isFinished) && (
             <button
               onClick={handlePlay}
-              style={{
-                width: '100%',
-                padding: '16px 32px',
-                borderRadius: '12px',
-                fontSize: '1.25rem',
-                fontWeight: '600',
-                transition: 'all 0.2s',
-                border: 'none',
-                cursor: 'pointer',
-                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-                backgroundColor: isFinished ? '#10b981' : '#8b5cf6',
-                color: 'white',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.05)';
-                e.currentTarget.style.backgroundColor = isFinished
-                  ? '#059669'
-                  : '#7c3aed';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.backgroundColor = isFinished
-                  ? '#10b981'
-                  : '#8b5cf6';
-              }}
+              className={`ambient-selector__button ambient-selector__button--${
+                isFinished ? 'restart' : 'start'
+              }`}
             >
               {isFinished ? '🔄 Recommencer' : '▶️ Démarrer'}
             </button>
           )}
 
           {isPlaying && !isFinished && (
-            <div style={{ display: 'flex', gap: '12px' }}>
+            <div className="ambient-selector__controls-group">
               <button
                 onClick={handlePause}
-                style={{
-                  flex: 1,
-                  padding: '16px 32px',
-                  borderRadius: '12px',
-                  fontSize: '1.25rem',
-                  fontWeight: '600',
-                  transition: 'all 0.2s',
-                  border: 'none',
-                  cursor: 'pointer',
-                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-                  backgroundColor: '#f97316',
-                  color: 'white',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'scale(1.05)';
-                  e.currentTarget.style.backgroundColor = '#ea580c';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.backgroundColor = '#f97316';
-                }}
+                className="ambient-selector__button ambient-selector__button--pause"
               >
                 ⏸️ Pause
               </button>
 
               <button
                 onClick={handleStop}
-                style={{
-                  flex: 1,
-                  padding: '16px 32px',
-                  borderRadius: '12px',
-                  fontSize: '1.25rem',
-                  fontWeight: '600',
-                  transition: 'all 0.2s',
-                  border: 'none',
-                  cursor: 'pointer',
-                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-                  backgroundColor: '#ef4444',
-                  color: 'white',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'scale(1.05)';
-                  e.currentTarget.style.backgroundColor = '#dc2626';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.backgroundColor = '#ef4444';
-                }}
+                className="ambient-selector__button ambient-selector__button--stop"
               >
                 ⏹️ Arrêter
               </button>
@@ -418,3 +236,42 @@ const AmbientSelector: React.FC = () => {
 };
 
 export default AmbientSelector;
+
+// CSS styles are now in Tab1.css to ensure consistency across components.
+// Block : .ambient-selector
+// Element : .ambient-selector__container, .ambient-selector__button
+// Modifier : .ambient-selector__button--start, .ambient-selector__button--pause
+
+// Classes disponibles
+// Conteneurs
+
+// .ambient-selector - Wrapper principal
+// .ambient-selector__container - Card conteneur
+// .ambient-selector__section - Section (son/durée)
+
+// Texte
+
+// .ambient-selector__title - Titre principal
+// .ambient-selector__section-title - Titre de section
+
+// Formulaires
+
+// .ambient-selector__select - Dropdown select
+// .ambient-selector__volume - Container volume
+// .ambient-selector__volume-label - Label volume
+// .ambient-selector__volume-slider - Slider volume
+
+// Boutons
+
+// .ambient-selector__button - Bouton de base
+// .ambient-selector__button--start - Bouton démarrer (violet)
+// .ambient-selector__button--restart - Bouton recommencer (vert)
+// .ambient-selector__button--pause - Bouton pause (orange)
+// .ambient-selector__button--stop - Bouton stop (rouge)
+
+// Durée personnalisée
+
+// .ambient-selector__custom-button - Bouton "Durée personnalisée"
+// .ambient-selector__custom-input - Input nombre
+// .ambient-selector__custom-confirm - Bouton ✓
+// .ambient-selector__custom-cancel - Bouton ✕
